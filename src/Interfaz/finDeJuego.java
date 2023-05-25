@@ -82,6 +82,11 @@ public class finDeJuego extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public void mostrarVentanaFinalizacion() {
+        finDeJuego ventana = new finDeJuego();
+        this.setVisible(true);
+    }
+    
     /**
      * @param args the command line arguments
      */

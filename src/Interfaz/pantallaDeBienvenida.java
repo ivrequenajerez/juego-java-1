@@ -80,6 +80,7 @@ public class pantallaDeBienvenida extends javax.swing.JFrame {
 
     private void botonComenzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonComenzarActionPerformed
         // Comenzar el juego (cambiar a pantalla rondaDePreguntas):
+    
         rondaDePreguntas ventana = new rondaDePreguntas();
         String[] opciones = {"Siempre", "No :("};
         int respuesta = showOptionDialog(null, "¿Estás listo?", "Comenzar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
@@ -90,6 +91,12 @@ public class pantallaDeBienvenida extends javax.swing.JFrame {
         } else {
             System.out.println("Esperamos :)");
         }
+        
+        // Primera Ronda
+        
+     
+        
+        
     }//GEN-LAST:event_botonComenzarActionPerformed
 
     /**

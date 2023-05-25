@@ -4,6 +4,7 @@
  */
 package trivia;
 
+import Interfaz.finDeJuego;
 import java.awt.List;
 import java.util.ArrayList;
 
@@ -11,12 +12,8 @@ import java.util.ArrayList;
  *
  * @author ianre
  */
-public class JuegoTrivia extends Pregunta {
+public class JuegoTrivia extends finDeJuego {
 
-    public JuegoTrivia() {
-        super("\u00bfQu\u00e9 videojuegos son de estrategia?", respuestas1);
-    }
-    
     // Rondas
     private int numeroRonda;
     private int NUMERO_MAXIMO_RONDAS = 4;
@@ -32,12 +29,10 @@ public class JuegoTrivia extends Pregunta {
         numeroRonda++;
         
         if (numeroRonda > NUMERO_MAXIMO_RONDAS) {
-            // mostrarVentanaFinalizacion(); pasa a finDeJuego
+            mostrarVentanaFinalizacion();
         }
         
     }
-    
-    
-
+   
     
 }

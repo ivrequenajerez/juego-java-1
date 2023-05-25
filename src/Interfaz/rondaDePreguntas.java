@@ -5,6 +5,8 @@
 package Interfaz;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import trivia.Pregunta;
 
 /**
  *
@@ -15,6 +17,8 @@ public class rondaDePreguntas extends javax.swing.JFrame {
     /**
      * Creates new form rondaDePreguntas
      */
+    
+ 
     public rondaDePreguntas() {
         initComponents();
         this.setLocationRelativeTo(null); // Interfaz centrada
@@ -22,6 +26,10 @@ public class rondaDePreguntas extends javax.swing.JFrame {
         ImageIcon icono = new ImageIcon("C:/Users/ianre/Web/Trivia/resources/icono.png");
         // Asignar el icono a la ventana principal
         setIconImage(icono.getImage());
+        
+        //Aqui insertas pregunta
+        Pregunta pregunta = new Pregunta("\u00bfQu\u00e9 videojuegos son de estrategia?", respuestas);
+        
     }
 
     /**
