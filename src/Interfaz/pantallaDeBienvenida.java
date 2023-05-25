@@ -6,6 +6,8 @@ package Interfaz;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showOptionDialog;
 
 /**
  *
@@ -51,6 +53,11 @@ public class pantallaDeBienvenida extends javax.swing.JFrame {
 
         botonComenzar.setBackground(new java.awt.Color(255, 255, 255));
         botonComenzar.setText("Comenzar");
+        botonComenzar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonComenzarActionPerformed(evt);
+            }
+        });
         jPanel1.add(botonComenzar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, -1, -1));
 
         mensajeBienvenida2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -70,6 +77,20 @@ public class pantallaDeBienvenida extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonComenzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonComenzarActionPerformed
+        // Comenzar el juego (cambiar a pantalla rondaDePreguntas):
+        rondaDePreguntas ventana = new rondaDePreguntas();
+        String[] opciones = {"Siempre", "No :("};
+        int respuesta = showOptionDialog(null, "¿Estás listo?", "Comenzar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
+        if (respuesta == JOptionPane.YES_OPTION) {
+            System.out.println("Comenzando el juego...");
+            this.setVisible(false);
+            ventana.setVisible(true);
+        } else {
+            System.out.println("Esperamos :)");
+        }
+    }//GEN-LAST:event_botonComenzarActionPerformed
 
     /**
      * @param args the command line arguments

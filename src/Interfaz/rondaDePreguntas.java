@@ -4,6 +4,8 @@
  */
 package Interfaz;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author ianre
@@ -15,6 +17,11 @@ public class rondaDePreguntas extends javax.swing.JFrame {
      */
     public rondaDePreguntas() {
         initComponents();
+        this.setLocationRelativeTo(null); // Interfaz centrada
+        // Cargar el archivo de icono
+        ImageIcon icono = new ImageIcon("C:/Users/ianre/Web/Trivia/resources/icono.png");
+        // Asignar el icono a la ventana principal
+        setIconImage(icono.getImage());
     }
 
     /**
