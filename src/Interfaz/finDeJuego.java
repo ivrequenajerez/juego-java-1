@@ -28,7 +28,7 @@ public class finDeJuego extends javax.swing.JFrame {
         if (puntuacion > 6) {
             mensajeFelicitacion.setText("No está nada mal ;)");
         } else if (puntuacion > 12) {
-            mensajeFelicitacion.setText("Eres un genio increíble");
+            mensajeFelicitacion.setText("Eres un crack increíble");
         } else {
             mensajeFelicitacion.setText("La próxima irá mejor :)");
         }

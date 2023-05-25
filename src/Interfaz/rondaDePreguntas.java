@@ -12,7 +12,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.showOptionDialog;
 
 /**
  *
@@ -87,7 +86,7 @@ public class rondaDePreguntas extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         fondoPreg = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -207,11 +206,9 @@ public class rondaDePreguntas extends javax.swing.JFrame {
         });
         fondoResp.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, 130, 60));
 
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Ronda 1");
-        fondoResp.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\ianre\\Web\\Trivia\\resources\\icono.png")); // NOI18N
+        fondoResp.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 50, 30));
 
         fondoPreg.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -287,7 +284,7 @@ public class rondaDePreguntas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void iniciarTemporizador() {
-        tiempoRestante = 31; // Tiempo en segundos
+        tiempoRestante = 61; // Tiempo en segundos
 
         executor = Executors.newSingleThreadScheduledExecutor();
         executor.scheduleAtFixedRate(new Runnable() {
@@ -528,12 +525,48 @@ public class rondaDePreguntas extends javax.swing.JFrame {
             System.out.println(estado);
         } else if (numeroRonda == 1) {
             CrearPregunta2();
+            jButton1.setBackground(new java.awt.Color(255,255,255));
+            jButton2.setBackground(new java.awt.Color(255,255,255));
+            jButton3.setBackground(new java.awt.Color(255,255,255));
+            jButton4.setBackground(new java.awt.Color(255,255,255));
+            jButton5.setBackground(new java.awt.Color(255,255,255));
+            jButton6.setBackground(new java.awt.Color(255,255,255));
+            jButton7.setBackground(new java.awt.Color(255,255,255));
+            jButton8.setBackground(new java.awt.Color(255,255,255));
+            jButton9.setBackground(new java.awt.Color(255,255,255));
+            jButton10.setBackground(new java.awt.Color(255,255,255));
+            jButton11.setBackground(new java.awt.Color(255,255,255));
+            jButton12.setBackground(new java.awt.Color(255,255,255));
             numeroRonda++; // Incrementar el contador después de ejecutar CrearPregunta2()
         } else if (numeroRonda == 2) {
             CrearPregunta3();
+            jButton1.setBackground(new java.awt.Color(255,255,255));
+            jButton2.setBackground(new java.awt.Color(255,255,255));
+            jButton3.setBackground(new java.awt.Color(255,255,255));
+            jButton4.setBackground(new java.awt.Color(255,255,255));
+            jButton5.setBackground(new java.awt.Color(255,255,255));
+            jButton6.setBackground(new java.awt.Color(255,255,255));
+            jButton7.setBackground(new java.awt.Color(255,255,255));
+            jButton8.setBackground(new java.awt.Color(255,255,255));
+            jButton9.setBackground(new java.awt.Color(255,255,255));
+            jButton10.setBackground(new java.awt.Color(255,255,255));
+            jButton11.setBackground(new java.awt.Color(255,255,255));
+            jButton12.setBackground(new java.awt.Color(255,255,255));
             numeroRonda++; // Incrementar el contador después de ejecutar CrearPregunta3()
         } else if (numeroRonda == 3) {
             CrearPregunta4();
+            jButton1.setBackground(new java.awt.Color(255,255,255));
+            jButton2.setBackground(new java.awt.Color(255,255,255));
+            jButton3.setBackground(new java.awt.Color(255,255,255));
+            jButton4.setBackground(new java.awt.Color(255,255,255));
+            jButton5.setBackground(new java.awt.Color(255,255,255));
+            jButton6.setBackground(new java.awt.Color(255,255,255));
+            jButton7.setBackground(new java.awt.Color(255,255,255));
+            jButton8.setBackground(new java.awt.Color(255,255,255));
+            jButton9.setBackground(new java.awt.Color(255,255,255));
+            jButton10.setBackground(new java.awt.Color(255,255,255));
+            jButton11.setBackground(new java.awt.Color(255,255,255));
+            jButton12.setBackground(new java.awt.Color(255,255,255));
             numeroRonda++; // Incrementar el contador después de ejecutar CrearPregunta4()
         }
 
@@ -759,7 +792,7 @@ public class rondaDePreguntas extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
 }
