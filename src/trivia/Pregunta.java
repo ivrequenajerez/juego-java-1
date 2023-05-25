@@ -21,6 +21,7 @@ public class Pregunta {
     private ArrayList<String> respuestas3 = new ArrayList<>();
     private ArrayList<String> respuestas4 = new ArrayList<>();
     
+    
     // Constructores
 
     public Pregunta() {
@@ -38,7 +39,7 @@ public class Pregunta {
         respuestas1.add("Total War");
         respuestas1.add("StarCraft");
         respuestas1.add("Company of Heroes");
-        respuestas1.add("Call of Duty");
+        respuestas1.add("XCOM");
         respuestas1.add("FIFA");
         respuestas1.add("Minecraft");
         respuestas1.add("Grand Theft Auto");

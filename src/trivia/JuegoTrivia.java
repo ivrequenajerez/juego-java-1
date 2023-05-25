@@ -29,7 +29,7 @@ public class JuegoTrivia extends finDeJuego {
         numeroRonda++;
         
         if (numeroRonda > NUMERO_MAXIMO_RONDAS) {
-            mostrarVentanaFinalizacion();
+            // mostrarVentanaFinalizacion();
         }
         
     }

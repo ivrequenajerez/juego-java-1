@@ -15,13 +15,19 @@ public class finDeJuego extends javax.swing.JFrame {
     /**
      * Creates new form finDeJuego
      */
-    public finDeJuego() {
+    public finDeJuego(int puntuacion) {
         initComponents();
         this.setLocationRelativeTo(null); // Interfaz centrada
         // Cargar el archivo de icono
         ImageIcon icono = new ImageIcon("C:/Users/ianre/Web/Trivia/resources/icono.png");
         // Asignar el icono a la ventana principal
         setIconImage(icono.getImage());
+        
+        jLabel2.setText(String.valueOf(puntuacion));
+    }
+    public finDeJuego() {
+        initComponents();
+        
     }
 
     /**
@@ -47,11 +53,12 @@ public class finDeJuego extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Puntuación obtenida:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
 
-        jLabel2.setText("[PUNTUACIÓN]");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, -1, -1));
-        jPanel1.add(mensajeFelicitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 180, 30));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 60, 40));
+        jPanel1.add(mensajeFelicitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 180, 30));
 
         jButton1.setText("Reiniciar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -82,10 +89,6 @@ public class finDeJuego extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public void mostrarVentanaFinalizacion() {
-        finDeJuego ventana = new finDeJuego();
-        this.setVisible(true);
-    }
     
     /**
      * @param args the command line arguments

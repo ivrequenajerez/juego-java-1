@@ -5,8 +5,8 @@
 package Interfaz;
 
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import trivia.Pregunta;
 
 /**
@@ -19,6 +19,26 @@ public class rondaDePreguntas extends javax.swing.JFrame {
      * Creates new form rondaDePreguntas
      */
     
+    ArrayList<String> preguntas = new ArrayList<>();
+    ArrayList<String> respuestas1 = new ArrayList<>();
+    ArrayList<String> respuestas2 = new ArrayList<>();
+    ArrayList<String> respuestas3 = new ArrayList<>();
+    ArrayList<String> respuestas4 = new ArrayList<>();
+    private int indiceRespuestas1;
+    private int indiceRespuestas2;
+    private int indiceRespuestas3;
+    private int indiceRespuestas4;
+    private int indiceRespuestas5;
+    private int indiceRespuestas6;
+    private int indiceRespuestas7;
+    private int indiceRespuestas8;
+    private int indiceRespuestas9;
+    private int indiceRespuestas10;
+    private int indiceRespuestas11;
+    private int indiceRespuestas12;
+    int indice = 0;
+    int puntuacion = 0;
+    
  
     public rondaDePreguntas() {
         initComponents();
@@ -27,11 +47,55 @@ public class rondaDePreguntas extends javax.swing.JFrame {
         ImageIcon icono = new ImageIcon("C:/Users/ianre/Web/Trivia/resources/icono.png");
         // Asignar el icono a la ventana principal
         setIconImage(icono.getImage());
+        // Crear pregunta 1 de ronda 1
+        // Instanciamos la clase Pregunta
+        Pregunta pregunta = new Pregunta(preguntas, respuestas1);
+        pregunta.AñadeDatos();
+        preguntas = pregunta.getPreguntas();
+        respuestas1 = pregunta.getRespuestas1();
+        respuestas2 = pregunta.getRespuestas2();
+        respuestas3 = pregunta.getRespuestas3();
+        respuestas4 = pregunta.getRespuestas4();
         
-        // Crear pregunta
-        CrearPregunta();
+        // Obtener un índice aleatorio
+        Random random = new Random();
+        indice = random.nextInt(preguntas.size());
+        System.out.println(indice * 3);
+        System.out.println(indice * 3 + 1);
+        
+        // Insertamos en los elementos de nuestra ventana
+        jLabel1.setText(preguntas.get(0)); // Establece la primera pregunta en un JLabel
+        jButton1.setText(respuestas1.get(indice * 3)); // Establece la respuesta de la primera pregunta en un JButton
+        jButton2.setText(respuestas1.get(indice * 3 + 1)); 
+        jButton3.setText(respuestas1.get(indice * 3 + 2)); 
+        jButton4.setText(respuestas1.get(indice * 3 + 3)); 
+        jButton5.setText(respuestas1.get(indice * 3 + 4)); 
+        jButton6.setText(respuestas1.get(indice * 3 + 5)); 
+        jButton7.setText(respuestas1.get(indice * 3 + 6)); 
+        jButton8.setText(respuestas1.get(indice * 3 + 7)); 
+        jButton9.setText(respuestas1.get(indice * 3 + 8)); 
+        jButton10.setText(respuestas1.get(indice * 3 + 9));
+        jButton11.setText(respuestas1.get(indice * 3 + 10));
+        jButton12.setText(respuestas1.get(indice * 3 + 11));
+        indiceRespuestas1 = respuestas1.indexOf(respuestas1.get(indice * 3));
+        indiceRespuestas2 = respuestas1.indexOf(respuestas1.get(indice * 3+1));
+        indiceRespuestas3 = respuestas1.indexOf(respuestas1.get(indice * 3+2));
+        indiceRespuestas4 = respuestas1.indexOf(respuestas1.get(indice * 3+3));
+        indiceRespuestas5 = respuestas1.indexOf(respuestas1.get(indice * 3+4));
+        indiceRespuestas6 = respuestas1.indexOf(respuestas1.get(indice * 3+5));
+        indiceRespuestas7 = respuestas1.indexOf(respuestas1.get(indice * 3+6));
+        indiceRespuestas8 = respuestas1.indexOf(respuestas1.get(indice * 3+7));
+        indiceRespuestas9 = respuestas1.indexOf(respuestas1.get(indice * 3+8));
+        indiceRespuestas10 = respuestas1.indexOf(respuestas1.get(indice * 3+9));
+        indiceRespuestas11 = respuestas1.indexOf(respuestas1.get(indice * 3+10));
+        indiceRespuestas12 = respuestas1.indexOf(respuestas1.get(indice * 3+11));
+        
+        finDeJuego ventanaFinJuego = new finDeJuego(puntuacion);
+        ventanaFinJuego.setVisible(true);
+        ventanaFinJuego.setVisible(false);
     }
-
+        
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,6 +122,7 @@ public class rondaDePreguntas extends javax.swing.JFrame {
         fondoPreg = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jButton13 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(600, 400));
@@ -75,46 +140,101 @@ public class rondaDePreguntas extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("OPCION");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         fondoResp.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 130, 60));
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setText("OPCION");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         fondoResp.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 130, 60));
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setText("OPCION");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         fondoResp.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, 130, 60));
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setText("OPCION");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         fondoResp.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 130, 60));
 
         jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setText("OPCION");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         fondoResp.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 130, 60));
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setText("OPCION");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
         fondoResp.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 130, 60));
 
         jButton8.setBackground(new java.awt.Color(255, 255, 255));
         jButton8.setText("OPCION");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
         fondoResp.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 130, 60));
 
         jButton9.setBackground(new java.awt.Color(255, 255, 255));
         jButton9.setText("OPCION");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
         fondoResp.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 130, 60));
 
         jButton10.setBackground(new java.awt.Color(255, 255, 255));
         jButton10.setText("OPCION");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
         fondoResp.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 130, 60));
 
         jButton11.setBackground(new java.awt.Color(255, 255, 255));
         jButton11.setText("OPCION");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
         fondoResp.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 130, 60));
 
         jButton12.setBackground(new java.awt.Color(255, 255, 255));
         jButton12.setText("OPCION");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
         fondoResp.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, 130, 60));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -134,25 +254,39 @@ public class rondaDePreguntas extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("[TIMER] 5:00");
 
+        jButton13.setText("¡Termine!");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout fondoPregLayout = new javax.swing.GroupLayout(fondoPreg);
         fondoPreg.setLayout(fondoPregLayout);
         fondoPregLayout.setHorizontalGroup(
             fondoPregLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(fondoPregLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoPregLayout.createSequentialGroup()
+                .addGroup(fondoPregLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(fondoPregLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton13))
+                    .addGroup(fondoPregLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33))
         );
         fondoPregLayout.setVerticalGroup(
             fondoPregLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fondoPregLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(fondoPregLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(fondoPregLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton13)
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -174,36 +308,214 @@ public class rondaDePreguntas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // Lógica para verificar si la opción seleccionada es correcta o incorrecta.
+        System.out.println(indiceRespuestas1);
+        if (indiceRespuestas1 <= 5) {
+            // Cambiar el color del botón a verde
+            jButton1.setBackground(new java.awt.Color(124,252,0));
+            puntuacion++;
+            System.out.println(puntuacion);
+        } else if (indiceRespuestas1 > 5) {
+            jButton1.setBackground(new java.awt.Color(255,160,122));
+            puntuacion--;
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // Lógica para verificar si la opción seleccionada es correcta o incorrecta.
+        // Respuesta seleccionada:
+        System.out.println(indiceRespuestas2);
+
+        if (indiceRespuestas2 <= 5) {
+            // Cambiar el color del botón a verde
+            jButton2.setBackground(new java.awt.Color(124,252,0));
+            puntuacion++;
+            System.out.println(puntuacion);
+        } else if (indiceRespuestas2 > 5) {
+            jButton2.setBackground(new java.awt.Color(255,160,122));
+            puntuacion--;
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // Lógica para verificar si la opción seleccionada es correcta o incorrecta.
+        
+        // Respuesta seleccionada:
+        System.out.println(indiceRespuestas3);
+
+        if (indiceRespuestas3 <= 5) {
+            // Cambiar el color del botón a verde
+            jButton3.setBackground(new java.awt.Color(124,252,0));
+            puntuacion++;
+            System.out.println(puntuacion);
+        } else if (indiceRespuestas3 > 5) {
+            jButton3.setBackground(new java.awt.Color(255,160,122));
+            puntuacion--;
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // Lógica para verificar si la opción seleccionada es correcta o incorrecta.
+        
+        // Respuesta seleccionada:
+        System.out.println(indiceRespuestas4);
+
+        if (indiceRespuestas4 <= 5) {
+            // Cambiar el color del botón a verde
+            jButton4.setBackground(new java.awt.Color(124,252,0));
+            puntuacion++;
+            System.out.println(puntuacion);
+        } else if (indiceRespuestas4 > 5) {
+            jButton4.setBackground(new java.awt.Color(255,160,122));
+            puntuacion--;
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // Lógica para verificar si la opción seleccionada es correcta o incorrecta.
+        
+        // Respuesta seleccionada:
+        System.out.println(indiceRespuestas5);
+
+        if (indiceRespuestas5 <= 5) {
+            // Cambiar el color del botón a verde
+            jButton5.setBackground(new java.awt.Color(124,252,0));
+            puntuacion++;
+            System.out.println(puntuacion);
+        } else if (indiceRespuestas5 > 5) {
+            jButton5.setBackground(new java.awt.Color(255,160,122));
+            puntuacion--;
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // Lógica para verificar si la opción seleccionada es correcta o incorrecta.
+        
+        // Respuesta seleccionada:
+       System.out.println(indiceRespuestas6);
+
+        if (indiceRespuestas6 <= 5) {
+            // Cambiar el color del botón a verde
+            jButton6.setBackground(new java.awt.Color(124,252,0));
+            puntuacion++;
+            System.out.println(puntuacion);
+        } else if (indiceRespuestas6 > 5) {
+            jButton6.setBackground(new java.awt.Color(255,160,122));
+            puntuacion--;
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // Lógica para verificar si la opción seleccionada es correcta o incorrecta.
+        
+        // Respuesta seleccionada:
+        System.out.println(indiceRespuestas7);
+        
+        if (indiceRespuestas7 <= 5) {
+            // Cambiar el color del botón a verde
+            jButton7.setBackground(new java.awt.Color(124,252,0));
+            puntuacion++;
+            System.out.println(puntuacion);
+        } else if (indiceRespuestas7 > 5) {
+            jButton7.setBackground(new java.awt.Color(255,160,122));
+            puntuacion--;
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // Lógica para verificar si la opción seleccionada es correcta o incorrecta.
+        
+        // Respuesta seleccionada:
+        System.out.println(indiceRespuestas8);
+       
+        if (indiceRespuestas8 <= 5) {
+            // Cambiar el color del botón a verde
+            jButton8.setBackground(new java.awt.Color(124,252,0));
+            puntuacion++;
+            System.out.println(puntuacion);
+        } else if (indiceRespuestas8 > 5) {
+            jButton8.setBackground(new java.awt.Color(255,160,122));
+            puntuacion--;
+        }
+        
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // Lógica para verificar si la opción seleccionada es correcta o incorrecta.
+        
+        // Respuesta seleccionada:
+        System.out.println(indiceRespuestas9);
+
+        if (indiceRespuestas9 <= 5) {
+            // Cambiar el color del botón a verde
+            jButton9.setBackground(new java.awt.Color(124,252,0));
+            puntuacion++;
+            System.out.println(puntuacion);
+        } else if (indiceRespuestas9 > 5) {
+            jButton9.setBackground(new java.awt.Color(255,160,122));
+            puntuacion--;
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // Lógica para verificar si la opción seleccionada es correcta o incorrecta.
+        
+        // Respuesta seleccionada:
+        System.out.println(indiceRespuestas10);
+
+        if (indiceRespuestas10 <= 5) {
+            // Cambiar el color del botón a verde
+            jButton10.setBackground(new java.awt.Color(124,252,0));
+            puntuacion++;
+            System.out.println(puntuacion);
+        } else if (indiceRespuestas10 > 5) {
+            jButton10.setBackground(new java.awt.Color(255,160,122));
+            puntuacion--;
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // Lógica para verificar si la opción seleccionada es correcta o incorrecta.
+        // Respuesta seleccionada:
+        System.out.println(indiceRespuestas11);
+
+        if (indiceRespuestas11 <= 5) {
+            // Cambiar el color del botón a verde
+            jButton11.setBackground(new java.awt.Color(124,252,0));
+            puntuacion++;
+            System.out.println(puntuacion);
+        } else if (indiceRespuestas11 > 5) {
+            jButton11.setBackground(new java.awt.Color(255,160,122));
+            puntuacion--;
+        }
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // Lógica para verificar si la opción seleccionada es correcta o incorrecta.
+        // Respuesta seleccionada:
+        System.out.println(indiceRespuestas12);
+
+        if (indiceRespuestas12 <= 5) {
+            // Cambiar el color del botón a verde
+            jButton12.setBackground(new java.awt.Color(124,252,0));
+            puntuacion++;
+            System.out.println(puntuacion);
+        } else if (indiceRespuestas12 > 5) {
+            jButton12.setBackground(new java.awt.Color(255,160,122));
+            puntuacion--;
+        }
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+       
+        this.setVisible(false);
+        finDeJuego ventanaFinJuego = new finDeJuego(puntuacion);
+        ventanaFinJuego.setVisible(true);
+    }//GEN-LAST:event_jButton13ActionPerformed
     
-    private void CrearPregunta() { // como parametro puede ponerse la ronda
-        // Crear pregunta de ronda 1
-        ArrayList<String> preguntas = new ArrayList<>();
-        ArrayList<String> respuestas1 = new ArrayList<>();
-        ArrayList<String> respuestas2 = new ArrayList<>();
-        ArrayList<String> respuestas3 = new ArrayList<>();
-        ArrayList<String> respuestas4 = new ArrayList<>();
-        Pregunta pregunta = new Pregunta(preguntas, respuestas1);
-        pregunta.AñadeDatos();
-        preguntas = pregunta.getPreguntas();
-        respuestas1 = pregunta.getRespuestas1();
-        respuestas2 = pregunta.getRespuestas2();
-        respuestas3 = pregunta.getRespuestas3();
-        respuestas4 = pregunta.getRespuestas4();
-        jLabel1.setText(preguntas.get(0)); // Establece la primera pregunta en un JLabel
-        jButton1.setText(respuestas1.get(1)); // Establece la primera respuesta de la primera pregunta en un JButton
-        jButton2.setText(respuestas1.get(2)); // Establece la segunda respuesta de la primera pregunta en un JButton
-        jButton3.setText(respuestas1.get(3)); // Establece la segunda respuesta de la primera pregunta en un JButton
-        jButton4.setText(respuestas1.get(4)); // Establece la segunda respuesta de la primera pregunta en un JButton
-        jButton5.setText(respuestas1.get(5)); // Establece la segunda respuesta de la primera pregunta en un JButton
-        jButton6.setText(respuestas1.get(6)); // Establece la segunda respuesta de la primera pregunta en un JButton
-        jButton7.setText(respuestas1.get(7)); // Establece la segunda respuesta de la primera pregunta en un JButton
-        jButton8.setText(respuestas1.get(8)); // Establece la segunda respuesta de la primera pregunta en un JButton
-        jButton9.setText(respuestas1.get(9)); // Establece la segunda respuesta de la primera pregunta en un JButton
-        jButton10.setText(respuestas1.get(10)); // Establece la segunda respuesta de la primera pregunta en un JButton
-        jButton11.setText(respuestas1.get(11)); // Establece la segunda respuesta de la primera pregunta en un JButton
-        jButton12.setText(respuestas1.get(12)); // Establece la segunda respuesta de la primera pregunta en un JButton
+    private void CrearPregunta() { // como parametro puede ponerse la ronda (la pregunta)
+        
     }
     
     /**
@@ -248,6 +560,7 @@ public class rondaDePreguntas extends javax.swing.JFrame {
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

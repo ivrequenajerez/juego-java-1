@@ -92,11 +92,6 @@ public class pantallaDeBienvenida extends javax.swing.JFrame {
             System.out.println("Esperamos :)");
         }
         
-        // Primera Ronda
-        
-     
-        
-        
     }//GEN-LAST:event_botonComenzarActionPerformed
 
     /**
