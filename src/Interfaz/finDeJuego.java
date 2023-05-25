@@ -26,11 +26,11 @@ public class finDeJuego extends javax.swing.JFrame {
         jLabel2.setText(String.valueOf(puntuacion));
         
         if (puntuacion > 6) {
-            mensajeFelicitacion.setText("No está nada mal ;)");
+            mensajeFelicitacion.setText("Excelente! Aquí también estás suspenso");
         } else if (puntuacion > 12) {
-            mensajeFelicitacion.setText("Eres un crack increíble");
-        } else {
-            mensajeFelicitacion.setText("La próxima irá mejor :)");
+            mensajeFelicitacion.setText("Te pongo un 7");
+        } else if (puntuacion < 6) {
+            mensajeFelicitacion.setText("Ponte a hacer más Kajuns");
         }
     }
     public finDeJuego() {
@@ -53,21 +53,26 @@ public class finDeJuego extends javax.swing.JFrame {
         mensajeFelicitacion = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(600, 400));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Puntuación obtenida:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
+        jLabel1.setText("¿No has pensado en cambiarte de grado?");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(18, 48, 74));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 60, 40));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 60, 40));
         jPanel1.add(mensajeFelicitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 180, 30));
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setForeground(new java.awt.Color(18, 46, 74));
         jButton1.setText("Reiniciar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,6 +81,8 @@ public class finDeJuego extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, -1, -1));
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setForeground(new java.awt.Color(153, 0, 0));
         jButton2.setText("Salir");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +90,11 @@ public class finDeJuego extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Tu puntuación total es:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -149,6 +161,7 @@ public class finDeJuego extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel mensajeFelicitacion;
     // End of variables declaration//GEN-END:variables

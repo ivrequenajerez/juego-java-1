@@ -67,7 +67,7 @@ public class Pregunta {
         respuestas3.add("Kase.O");
         respuestas3.add("Arianna Puello");
         respuestas3.add("Ayax");
-        respuestas3.add("YuS");
+        respuestas3.add("Hurricane G");
         respuestas3.add("Mala Rodríguez");
         respuestas3.add("FERNANDOACOSTA");
         respuestas3.add("Canserbero");
@@ -75,7 +75,7 @@ public class Pregunta {
         respuestas3.add("Lil Supa");
         respuestas3.add("MC Teteu");
         respuestas3.add("Fazzini");
-        respuestas3.add("Hurricane G");
+        respuestas3.add("Joaquín Sabina");
         // Pregunta 3
         preguntas.add(pregunta3);
         
@@ -119,14 +119,14 @@ public class Pregunta {
         preguntas.add(pregunta1);
         
         respuestas2.add("Alejandro Sanz");
-        respuestas2.add("Rosalía");
+        respuestas2.add("Lola Flores");
         respuestas2.add("Pablo Alborán");
         respuestas2.add("India Martínez");
         respuestas2.add("Niña Pastori");
         respuestas2.add("David Bisbal");
         respuestas2.add("Maluma");
         respuestas2.add("Justin Bieber");
-        respuestas2.add("Churumbé");
+        respuestas2.add("Churumbel");
         respuestas2.add("Beyoncé");
         respuestas2.add("Ed Sheeran");
         respuestas2.add("Adele");

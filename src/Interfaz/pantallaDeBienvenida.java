@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showOptionDialog;
+import javax.sound.sampled.*;
 
 /**
  *
@@ -26,6 +27,32 @@ public class pantallaDeBienvenida extends javax.swing.JFrame {
         // Asignar el icono a la ventana principal
         setIconImage(icono.getImage());
     
+        try {
+            // Obtener un Clip de sonido
+            Clip clip = AudioSystem.getClip();
+
+            // Cargar el archivo de audio
+            AudioInputStream inputStream = AudioSystem.getAudioInputStream(pantallaDeBienvenida.class.getResourceAsStream("C:/Users/ianre/Web/Trivia/resources/cancion.wav"));
+
+            // Abrir el Clip y establecer el archivo de audio como fuente de datos
+            clip.open(inputStream);
+
+            // Reproducir el audio
+            clip.start();
+
+            // Esperar hasta que se complete la reproducción
+            while (!clip.isRunning())
+                Thread.sleep(10);
+            while (clip.isRunning())
+                Thread.sleep(10);
+
+            // Cerrar el Clip y liberar los recursos
+            clip.close();
+            inputStream.close();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        
     }
 
     /**
@@ -41,15 +68,21 @@ public class pantallaDeBienvenida extends javax.swing.JFrame {
         mensajeBienvenida = new javax.swing.JLabel();
         botonComenzar = new javax.swing.JButton();
         mensajeBienvenida2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(600, 400));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        mensajeBienvenida.setBackground(new java.awt.Color(0, 0, 0));
         mensajeBienvenida.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        mensajeBienvenida.setText("¡Bienvenid@ a [nombre Trivia]!");
-        jPanel1.add(mensajeBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, -1, -1));
+        mensajeBienvenida.setForeground(new java.awt.Color(0, 0, 0));
+        mensajeBienvenida.setText("Bienvenid@ a SudoTrivia");
+        jPanel1.add(mensajeBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, -1, -1));
 
         botonComenzar.setBackground(new java.awt.Color(255, 255, 255));
         botonComenzar.setText("Comenzar");
@@ -58,11 +91,24 @@ public class pantallaDeBienvenida extends javax.swing.JFrame {
                 botonComenzarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonComenzar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, -1, -1));
+        jPanel1.add(botonComenzar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, -1, -1));
 
         mensajeBienvenida2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        mensajeBienvenida2.setText("Descubre cuánto sabes...");
-        jPanel1.add(mensajeBienvenida2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, -1, -1));
+        mensajeBienvenida2.setForeground(new java.awt.Color(0, 0, 51));
+        mensajeBienvenida2.setText("¡Suspende ya, en la semana post-examenes!");
+        jPanel1.add(mensajeBienvenida2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, -1, -1));
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\ianre\\Web\\Trivia\\resources\\perroRana2.png")); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 110, 110));
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\ianre\\Web\\Trivia\\resources\\bukoni.png")); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 90, 70));
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\ianre\\Web\\Trivia\\resources\\pregunta.png")); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 110, 110));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,7 +129,8 @@ public class pantallaDeBienvenida extends javax.swing.JFrame {
     
         rondaDePreguntas ventana = new rondaDePreguntas();
         String[] opciones = {"Siempre", "No :("};
-        int respuesta = showOptionDialog(null, "¿Estás listo?", "Comenzar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
+        ImageIcon icono = new ImageIcon("C:/Users/ianre/Web/Trivia/resources/hasbullaA.png");
+        int respuesta = showOptionDialog(null, "Tienes un minuto para responder 4 preguntas, haz click en siguiente cuando termines con una ronda ¿Estás listo?", "Comenzar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icono, opciones, opciones[0]);
         if (respuesta == JOptionPane.YES_OPTION) {
             System.out.println("Comenzando el juego...");
             this.setVisible(false);
@@ -131,6 +178,9 @@ public class pantallaDeBienvenida extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonComenzar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel mensajeBienvenida;
     private javax.swing.JLabel mensajeBienvenida2;
