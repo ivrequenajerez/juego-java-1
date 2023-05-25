@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.ImageIcon;
 import trivia.Pregunta;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showOptionDialog;
 
 /**
  *
@@ -38,8 +43,11 @@ public class rondaDePreguntas extends javax.swing.JFrame {
     private int indiceRespuestas12;
     int indice = 0;
     int puntuacion = 0;
+    private ScheduledExecutorService executor;
+    private int tiempoRestante;
+    boolean estado = false;
+    private int numeroRonda = 1;
     
- 
     public rondaDePreguntas() {
         initComponents();
         this.setLocationRelativeTo(null); // Interfaz centrada
@@ -48,51 +56,12 @@ public class rondaDePreguntas extends javax.swing.JFrame {
         // Asignar el icono a la ventana principal
         setIconImage(icono.getImage());
         // Crear pregunta 1 de ronda 1
-        // Instanciamos la clase Pregunta
-        Pregunta pregunta = new Pregunta(preguntas, respuestas1);
-        pregunta.AñadeDatos();
-        preguntas = pregunta.getPreguntas();
-        respuestas1 = pregunta.getRespuestas1();
-        respuestas2 = pregunta.getRespuestas2();
-        respuestas3 = pregunta.getRespuestas3();
-        respuestas4 = pregunta.getRespuestas4();
-        
-        // Obtener un índice aleatorio
-        Random random = new Random();
-        indice = random.nextInt(preguntas.size());
-        System.out.println(indice * 3);
-        System.out.println(indice * 3 + 1);
-        
-        // Insertamos en los elementos de nuestra ventana
-        jLabel1.setText(preguntas.get(0)); // Establece la primera pregunta en un JLabel
-        jButton1.setText(respuestas1.get(indice * 3)); // Establece la respuesta de la primera pregunta en un JButton
-        jButton2.setText(respuestas1.get(indice * 3 + 1)); 
-        jButton3.setText(respuestas1.get(indice * 3 + 2)); 
-        jButton4.setText(respuestas1.get(indice * 3 + 3)); 
-        jButton5.setText(respuestas1.get(indice * 3 + 4)); 
-        jButton6.setText(respuestas1.get(indice * 3 + 5)); 
-        jButton7.setText(respuestas1.get(indice * 3 + 6)); 
-        jButton8.setText(respuestas1.get(indice * 3 + 7)); 
-        jButton9.setText(respuestas1.get(indice * 3 + 8)); 
-        jButton10.setText(respuestas1.get(indice * 3 + 9));
-        jButton11.setText(respuestas1.get(indice * 3 + 10));
-        jButton12.setText(respuestas1.get(indice * 3 + 11));
-        indiceRespuestas1 = respuestas1.indexOf(respuestas1.get(indice * 3));
-        indiceRespuestas2 = respuestas1.indexOf(respuestas1.get(indice * 3+1));
-        indiceRespuestas3 = respuestas1.indexOf(respuestas1.get(indice * 3+2));
-        indiceRespuestas4 = respuestas1.indexOf(respuestas1.get(indice * 3+3));
-        indiceRespuestas5 = respuestas1.indexOf(respuestas1.get(indice * 3+4));
-        indiceRespuestas6 = respuestas1.indexOf(respuestas1.get(indice * 3+5));
-        indiceRespuestas7 = respuestas1.indexOf(respuestas1.get(indice * 3+6));
-        indiceRespuestas8 = respuestas1.indexOf(respuestas1.get(indice * 3+7));
-        indiceRespuestas9 = respuestas1.indexOf(respuestas1.get(indice * 3+8));
-        indiceRespuestas10 = respuestas1.indexOf(respuestas1.get(indice * 3+9));
-        indiceRespuestas11 = respuestas1.indexOf(respuestas1.get(indice * 3+10));
-        indiceRespuestas12 = respuestas1.indexOf(respuestas1.get(indice * 3+11));
+        CrearPregunta1();
         
         finDeJuego ventanaFinJuego = new finDeJuego(puntuacion);
-        ventanaFinJuego.setVisible(true);
         ventanaFinJuego.setVisible(false);
+        
+        iniciarTemporizador();
     }
         
         
@@ -123,6 +92,7 @@ public class rondaDePreguntas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton13 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(600, 400));
@@ -252,14 +222,17 @@ public class rondaDePreguntas extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("[TIMER] 5:00");
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        jButton13.setText("¡Termine!");
+        jButton13.setText("Siguiente");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
             }
         });
+
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Tiempo:");
 
         javax.swing.GroupLayout fondoPregLayout = new javax.swing.GroupLayout(fondoPreg);
         fondoPreg.setLayout(fondoPregLayout);
@@ -276,11 +249,17 @@ public class rondaDePreguntas extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoPregLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(52, 52, 52))
         );
         fondoPregLayout.setVerticalGroup(
             fondoPregLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fondoPregLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(fondoPregLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -307,6 +286,38 @@ public class rondaDePreguntas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void iniciarTemporizador() {
+        tiempoRestante = 31; // Tiempo en segundos
+
+        executor = Executors.newSingleThreadScheduledExecutor();
+        executor.scheduleAtFixedRate(new Runnable() {
+            
+            public void run() {
+                tiempoRestante--;
+
+                if (tiempoRestante >= 0) {
+                    jLabel2.setText(String.valueOf(tiempoRestante));
+                } else if (tiempoRestante <= 0){
+                    executor.shutdown(); // Detener el temporizador
+                    JOptionPane.showMessageDialog(null, "¡Se acabó el tiempo!");
+                    jButton1.setEnabled(false);
+                    jButton2.setEnabled(false);
+                    jButton3.setEnabled(false);
+                    jButton4.setEnabled(false);
+                    jButton5.setEnabled(false);
+                    jButton6.setEnabled(false);
+                    jButton7.setEnabled(false);
+                    jButton8.setEnabled(false);
+                    jButton9.setEnabled(false);
+                    jButton10.setEnabled(false);
+                    jButton11.setEnabled(false);
+                    jButton12.setEnabled(false);
+                }
+            }
+        }, 1, 1, TimeUnit.SECONDS);
+        
+    } 
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Lógica para verificar si la opción seleccionada es correcta o incorrecta.
         System.out.println(indiceRespuestas1);
@@ -508,15 +519,192 @@ public class rondaDePreguntas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-       
-        this.setVisible(false);
-        finDeJuego ventanaFinJuego = new finDeJuego(puntuacion);
-        ventanaFinJuego.setVisible(true);
+        int numeroMaxRondas = 4;
+
+        if (numeroRonda >= numeroMaxRondas) {
+            this.setVisible(false);
+            finDeJuego ventanaFinJuego = new finDeJuego(puntuacion);
+            ventanaFinJuego.setVisible(true);
+            System.out.println(estado);
+        } else if (numeroRonda == 1) {
+            CrearPregunta2();
+            numeroRonda++; // Incrementar el contador después de ejecutar CrearPregunta2()
+        } else if (numeroRonda == 2) {
+            CrearPregunta3();
+            numeroRonda++; // Incrementar el contador después de ejecutar CrearPregunta3()
+        } else if (numeroRonda == 3) {
+            CrearPregunta4();
+            numeroRonda++; // Incrementar el contador después de ejecutar CrearPregunta4()
+        }
+
+        System.out.println(numeroRonda);
+        
     }//GEN-LAST:event_jButton13ActionPerformed
     
-    private void CrearPregunta() { // como parametro puede ponerse la ronda (la pregunta)
+    private void CrearPregunta1() { // como parametro puede ponerse la ronda (la pregunta)
+        // Instanciamos la clase Pregunta
+        Pregunta pregunta = new Pregunta(preguntas, respuestas1);
+        pregunta.AñadeDatos();
+        preguntas = pregunta.getPreguntas();
+        respuestas1 = pregunta.getRespuestas1();
         
+        // Obtener un índice aleatorio
+        Random random = new Random();
+        indice = random.nextInt(preguntas.size());
+        System.out.println(indice * 3);
+        System.out.println(indice * 3 + 1);
+        
+        // Insertamos en los elementos de nuestra ventana
+        jLabel1.setText(preguntas.get(0)); // Establece la primera pregunta en un JLabel
+        jButton1.setText(respuestas1.get(indice * 3)); // Establece la respuesta de la primera pregunta en un JButton
+        jButton2.setText(respuestas1.get(indice * 3 + 1)); 
+        jButton3.setText(respuestas1.get(indice * 3 + 2)); 
+        jButton4.setText(respuestas1.get(indice * 3 + 3)); 
+        jButton5.setText(respuestas1.get(indice * 3 + 4)); 
+        jButton6.setText(respuestas1.get(indice * 3 + 5)); 
+        jButton7.setText(respuestas1.get(indice * 3 + 6)); 
+        jButton8.setText(respuestas1.get(indice * 3 + 7)); 
+        jButton9.setText(respuestas1.get(indice * 3 + 8)); 
+        jButton10.setText(respuestas1.get(indice * 3 + 9));
+        jButton11.setText(respuestas1.get(indice * 3 + 10));
+        jButton12.setText(respuestas1.get(indice * 3 + 11));
+        indiceRespuestas1 = respuestas1.indexOf(respuestas1.get(indice * 3));
+        indiceRespuestas2 = respuestas1.indexOf(respuestas1.get(indice * 3+1));
+        indiceRespuestas3 = respuestas1.indexOf(respuestas1.get(indice * 3+2));
+        indiceRespuestas4 = respuestas1.indexOf(respuestas1.get(indice * 3+3));
+        indiceRespuestas5 = respuestas1.indexOf(respuestas1.get(indice * 3+4));
+        indiceRespuestas6 = respuestas1.indexOf(respuestas1.get(indice * 3+5));
+        indiceRespuestas7 = respuestas1.indexOf(respuestas1.get(indice * 3+6));
+        indiceRespuestas8 = respuestas1.indexOf(respuestas1.get(indice * 3+7));
+        indiceRespuestas9 = respuestas1.indexOf(respuestas1.get(indice * 3+8));
+        indiceRespuestas10 = respuestas1.indexOf(respuestas1.get(indice * 3+9));
+        indiceRespuestas11 = respuestas1.indexOf(respuestas1.get(indice * 3+10));
+        indiceRespuestas12 = respuestas1.indexOf(respuestas1.get(indice * 3+11));
     }
+    
+    private void CrearPregunta2() { // como parametro puede ponerse la ronda (la pregunta)
+        // Instanciamos la clase Pregunta
+        Pregunta pregunta = new Pregunta(preguntas, respuestas1);
+        pregunta.AñadeDatos();
+        preguntas = pregunta.getPreguntas();
+        respuestas2 = pregunta.getRespuestas2();
+        
+        // Obtener un índice aleatorio
+        Random random = new Random();
+        indice = random.nextInt(preguntas.size());
+        System.out.println(indice * 3);
+        System.out.println(indice * 3 + 1);
+        
+        // Insertamos en los elementos de nuestra ventana
+        jLabel1.setText(preguntas.get(1)); // Establece la primera pregunta en un JLabel
+        jButton1.setText(respuestas2.get(indice * 3)); // Establece la respuesta de la primera pregunta en un JButton
+        jButton2.setText(respuestas2.get(indice * 3 + 1)); 
+        jButton3.setText(respuestas2.get(indice * 3 + 2)); 
+        jButton4.setText(respuestas2.get(indice * 3 + 3)); 
+        jButton5.setText(respuestas2.get(indice * 3 + 4)); 
+        jButton6.setText(respuestas2.get(indice * 3 + 5)); 
+        jButton7.setText(respuestas2.get(indice * 3 + 6)); 
+        jButton8.setText(respuestas2.get(indice * 3 + 7)); 
+        jButton9.setText(respuestas2.get(indice * 3 + 8)); 
+        jButton10.setText(respuestas2.get(indice * 3 + 9));
+        jButton11.setText(respuestas2.get(indice * 3 + 10));
+        jButton12.setText(respuestas2.get(indice * 3 + 11));
+        indiceRespuestas1 = respuestas2.indexOf(respuestas2.get(indice * 3));
+        indiceRespuestas2 = respuestas2.indexOf(respuestas2.get(indice * 3+1));
+        indiceRespuestas3 = respuestas2.indexOf(respuestas2.get(indice * 3+2));
+        indiceRespuestas4 = respuestas2.indexOf(respuestas2.get(indice * 3+3));
+        indiceRespuestas5 = respuestas2.indexOf(respuestas2.get(indice * 3+4));
+        indiceRespuestas6 = respuestas2.indexOf(respuestas2.get(indice * 3+5));
+        indiceRespuestas7 = respuestas2.indexOf(respuestas2.get(indice * 3+6));
+        indiceRespuestas8 = respuestas2.indexOf(respuestas2.get(indice * 3+7));
+        indiceRespuestas9 = respuestas2.indexOf(respuestas2.get(indice * 3+8));
+        indiceRespuestas10 = respuestas2.indexOf(respuestas2.get(indice * 3+9));
+        indiceRespuestas11 = respuestas2.indexOf(respuestas2.get(indice * 3+10));
+        indiceRespuestas12 = respuestas2.indexOf(respuestas2.get(indice * 3+11));
+    }
+    
+    private void CrearPregunta3() { // como parametro puede ponerse la ronda (la pregunta)
+        // Instanciamos la clase Pregunta
+        Pregunta pregunta = new Pregunta(preguntas, respuestas1);
+        pregunta.AñadeDatos();
+        preguntas = pregunta.getPreguntas();
+        respuestas3 = pregunta.getRespuestas3();
+        
+        // Obtener un índice aleatorio
+        Random random = new Random();
+        indice = random.nextInt(preguntas.size());
+        System.out.println(indice * 3);
+        System.out.println(indice * 3 + 1);
+        
+        // Insertamos en los elementos de nuestra ventana
+        jLabel1.setText(preguntas.get(2)); // Establece la primera pregunta en un JLabel
+        jButton1.setText(respuestas3.get(indice * 3)); // Establece la respuesta de la primera pregunta en un JButton
+        jButton2.setText(respuestas3.get(indice * 3 + 1)); 
+        jButton3.setText(respuestas3.get(indice * 3 + 2)); 
+        jButton4.setText(respuestas3.get(indice * 3 + 3)); 
+        jButton5.setText(respuestas3.get(indice * 3 + 4)); 
+        jButton6.setText(respuestas3.get(indice * 3 + 5)); 
+        jButton7.setText(respuestas3.get(indice * 3 + 6)); 
+        jButton8.setText(respuestas3.get(indice * 3 + 7)); 
+        jButton9.setText(respuestas3.get(indice * 3 + 8)); 
+        jButton10.setText(respuestas3.get(indice * 3 + 9));
+        jButton11.setText(respuestas3.get(indice * 3 + 10));
+        jButton12.setText(respuestas3.get(indice * 3 + 11));
+        indiceRespuestas1 = respuestas3.indexOf(respuestas3.get(indice * 3));
+        indiceRespuestas2 = respuestas3.indexOf(respuestas3.get(indice * 3+1));
+        indiceRespuestas3 = respuestas3.indexOf(respuestas3.get(indice * 3+2));
+        indiceRespuestas4 = respuestas3.indexOf(respuestas3.get(indice * 3+3));
+        indiceRespuestas5 = respuestas3.indexOf(respuestas3.get(indice * 3+4));
+        indiceRespuestas6 = respuestas3.indexOf(respuestas3.get(indice * 3+5));
+        indiceRespuestas7 = respuestas3.indexOf(respuestas3.get(indice * 3+6));
+        indiceRespuestas8 = respuestas3.indexOf(respuestas3.get(indice * 3+7));
+        indiceRespuestas9 = respuestas3.indexOf(respuestas3.get(indice * 3+8));
+        indiceRespuestas10 = respuestas3.indexOf(respuestas3.get(indice * 3+9));
+        indiceRespuestas11 = respuestas3.indexOf(respuestas3.get(indice * 3+10));
+        indiceRespuestas12 = respuestas3.indexOf(respuestas3.get(indice * 3+11));
+    }
+    private void CrearPregunta4() { // como parametro puede ponerse la ronda (la pregunta)
+        // Instanciamos la clase Pregunta
+        Pregunta pregunta = new Pregunta(preguntas, respuestas1);
+        pregunta.AñadeDatos();
+        preguntas = pregunta.getPreguntas();
+        respuestas4 = pregunta.getRespuestas4();
+        
+        // Obtener un índice aleatorio
+        Random random = new Random();
+        indice = random.nextInt(preguntas.size());
+        System.out.println(indice * 3);
+        System.out.println(indice * 3 + 1);
+        
+        // Insertamos en los elementos de nuestra ventana
+        jLabel1.setText(preguntas.get(3)); // Establece la primera pregunta en un JLabel
+        jButton1.setText(respuestas4.get(indice * 3)); // Establece la respuesta de la primera pregunta en un JButton
+        jButton2.setText(respuestas4.get(indice * 3 + 1)); 
+        jButton3.setText(respuestas4.get(indice * 3 + 2)); 
+        jButton4.setText(respuestas4.get(indice * 3 + 3)); 
+        jButton5.setText(respuestas4.get(indice * 3 + 4)); 
+        jButton6.setText(respuestas4.get(indice * 3 + 5)); 
+        jButton7.setText(respuestas4.get(indice * 3 + 6)); 
+        jButton8.setText(respuestas4.get(indice * 3 + 7)); 
+        jButton9.setText(respuestas4.get(indice * 3 + 8)); 
+        jButton10.setText(respuestas4.get(indice * 3 + 9));
+        jButton11.setText(respuestas4.get(indice * 3 + 10));
+        jButton12.setText(respuestas4.get(indice * 3 + 11));
+        indiceRespuestas1 = respuestas4.indexOf(respuestas4.get(indice * 3));
+        indiceRespuestas2 = respuestas4.indexOf(respuestas4.get(indice * 3+1));
+        indiceRespuestas3 = respuestas4.indexOf(respuestas4.get(indice * 3+2));
+        indiceRespuestas4 = respuestas4.indexOf(respuestas4.get(indice * 3+3));
+        indiceRespuestas5 = respuestas4.indexOf(respuestas4.get(indice * 3+4));
+        indiceRespuestas6 = respuestas4.indexOf(respuestas4.get(indice * 3+5));
+        indiceRespuestas7 = respuestas4.indexOf(respuestas4.get(indice * 3+6));
+        indiceRespuestas8 = respuestas4.indexOf(respuestas4.get(indice * 3+7));
+        indiceRespuestas9 = respuestas4.indexOf(respuestas4.get(indice * 3+8));
+        indiceRespuestas10 = respuestas4.indexOf(respuestas4.get(indice * 3+9));
+        indiceRespuestas11 = respuestas4.indexOf(respuestas4.get(indice * 3+10));
+        indiceRespuestas12 = respuestas4.indexOf(respuestas4.get(indice * 3+11));
+    }
+    
+    
     
     /**
      * @param args the command line arguments
@@ -572,5 +760,6 @@ public class rondaDePreguntas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

@@ -24,6 +24,14 @@ public class finDeJuego extends javax.swing.JFrame {
         setIconImage(icono.getImage());
         
         jLabel2.setText(String.valueOf(puntuacion));
+        
+        if (puntuacion > 6) {
+            mensajeFelicitacion.setText("No está nada mal ;)");
+        } else if (puntuacion > 12) {
+            mensajeFelicitacion.setText("Eres un genio increíble");
+        } else {
+            mensajeFelicitacion.setText("La próxima irá mejor :)");
+        }
     }
     public finDeJuego() {
         initComponents();
@@ -58,7 +66,7 @@ public class finDeJuego extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 60, 40));
-        jPanel1.add(mensajeFelicitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 180, 30));
+        jPanel1.add(mensajeFelicitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 180, 30));
 
         jButton1.setText("Reiniciar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -69,6 +77,11 @@ public class finDeJuego extends javax.swing.JFrame {
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, -1, -1));
 
         jButton2.setText("Salir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -86,8 +99,14 @@ public class finDeJuego extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        pantallaDeBienvenida ventana = new pantallaDeBienvenida();
+        this.setVisible(false);
+        ventana.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     
     /**
