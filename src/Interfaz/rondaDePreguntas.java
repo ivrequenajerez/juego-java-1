@@ -47,6 +47,7 @@ public class rondaDePreguntas extends javax.swing.JFrame {
     private int tiempoRestante;
     boolean estado = false;
     private int numeroRonda = 1;
+    private boolean ventanaAbierta = true;
     
     public rondaDePreguntas() {
         initComponents();
@@ -350,31 +351,47 @@ public class rondaDePreguntas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void iniciarTemporizador() {
-        tiempoRestante = 61; // Tiempo en segundos
+        tiempoRestante = 121; // Tiempo en segundos
 
         executor = Executors.newSingleThreadScheduledExecutor();
         executor.scheduleAtFixedRate(new Runnable() {
             
             public void run() {
-                tiempoRestante--;
+                // Tu código de contador aquí
+                while (ventanaAbierta && tiempoRestante >= 0) {
+                    tiempoRestante--;
 
-                if (tiempoRestante >= 0) {
-                    jLabel2.setText(String.valueOf(tiempoRestante));
-                } else if (tiempoRestante <= 0){
-                    executor.shutdown(); // Detener el temporizador
-                    JOptionPane.showMessageDialog(null, "¡Se acabó el tiempo!");
-                    jButton1.setEnabled(false);
-                    jButton2.setEnabled(false);
-                    jButton3.setEnabled(false);
-                    jButton4.setEnabled(false);
-                    jButton5.setEnabled(false);
-                    jButton6.setEnabled(false);
-                    jButton7.setEnabled(false);
-                    jButton8.setEnabled(false);
-                    jButton9.setEnabled(false);
-                    jButton10.setEnabled(false);
-                    jButton11.setEnabled(false);
-                    jButton12.setEnabled(false);
+                    if (tiempoRestante >= 0) {
+                        jLabel2.setText(String.valueOf(tiempoRestante));
+                    } else if (tiempoRestante <= 0){
+                        executor.shutdown(); // Detener el temporizador
+                        JOptionPane.showMessageDialog(null, "¡Se acabó el tiempo!");
+                        jButton1.setEnabled(false);
+                        jButton2.setEnabled(false);
+                        jButton3.setEnabled(false);
+                        jButton4.setEnabled(false);
+                        jButton5.setEnabled(false);
+                        jButton6.setEnabled(false);
+                        jButton7.setEnabled(false);
+                        jButton8.setEnabled(false);
+                        jButton9.setEnabled(false);
+                        jButton10.setEnabled(false);
+                        jButton11.setEnabled(false);
+                        jButton12.setEnabled(false);
+                        jLabel3.setText("");
+                    }
+
+                    // Verificar si la ventana se cerró
+                    if (!ventanaAbierta) {
+                        executor.shutdown(); // Detener el temporizador si la ventana se cerró
+                        break; // Salir del bucle si la ventana se cerró
+                    }
+
+                    try {
+                        Thread.sleep(1000); // Esperar 1 segundo
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }, 1, 1, TimeUnit.SECONDS);
@@ -585,7 +602,8 @@ public class rondaDePreguntas extends javax.swing.JFrame {
         int numeroMaxRondas = 4;
 
         if (numeroRonda >= numeroMaxRondas) {
-            this.setVisible(false);
+            this.dispose(); // Cierra la ventana
+            
             finDeJuego ventanaFinJuego = new finDeJuego(puntuacion);
             ventanaFinJuego.setVisible(true);
             System.out.println(estado);

@@ -25,13 +25,11 @@ public class finDeJuego extends javax.swing.JFrame {
         
         jLabel2.setText(String.valueOf(puntuacion));
         
-        if (puntuacion > 6) {
+        if (puntuacion <= 6) {
             mensajeFelicitacion.setText("Excelente! Aquí también estás suspenso");
-        } else if (puntuacion > 12) {
-            mensajeFelicitacion.setText("Te pongo un 7");
-        } else if (puntuacion < 6) {
-            mensajeFelicitacion.setText("Ponte a hacer más Kajuns");
-        }
+        } else if (puntuacion >= 6) {
+            mensajeFelicitacion.setText("El rey del Kajuns");
+        } 
     }
     public finDeJuego() {
         initComponents();
@@ -69,7 +67,10 @@ public class finDeJuego extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(18, 48, 74));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 60, 40));
-        jPanel1.add(mensajeFelicitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 180, 30));
+
+        mensajeFelicitacion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        mensajeFelicitacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(mensajeFelicitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 300, 30));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setForeground(new java.awt.Color(18, 46, 74));
