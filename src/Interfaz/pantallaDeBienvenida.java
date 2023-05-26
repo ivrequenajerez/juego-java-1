@@ -4,6 +4,10 @@
  */
 package Interfaz;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -19,7 +23,7 @@ public class pantallaDeBienvenida extends javax.swing.JFrame {
     /**
      * Creates new form pantallaDeBienvenida
      */
-    public pantallaDeBienvenida() {
+    public pantallaDeBienvenida() throws IOException {
         initComponents();
         this.setLocationRelativeTo(null); // Interfaz centrada
         // Cargar el archivo de icono
@@ -27,31 +31,7 @@ public class pantallaDeBienvenida extends javax.swing.JFrame {
         // Asignar el icono a la ventana principal
         setIconImage(icono.getImage());
     
-        try {
-            // Obtener un Clip de sonido
-            Clip clip = AudioSystem.getClip();
-
-            // Cargar el archivo de audio
-            AudioInputStream inputStream = AudioSystem.getAudioInputStream(pantallaDeBienvenida.class.getResourceAsStream("C:/Users/ianre/Web/Trivia/resources/cancion.wav"));
-
-            // Abrir el Clip y establecer el archivo de audio como fuente de datos
-            clip.open(inputStream);
-
-            // Reproducir el audio
-            clip.start();
-
-            // Esperar hasta que se complete la reproducción
-            while (!clip.isRunning())
-                Thread.sleep(10);
-            while (clip.isRunning())
-                Thread.sleep(10);
-
-            // Cerrar el Clip y liberar los recursos
-            clip.close();
-            inputStream.close();
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
+        ReproducirSonido("cancion.wav");
         
     }
 
@@ -71,6 +51,7 @@ public class pantallaDeBienvenida extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(600, 400));
@@ -110,6 +91,10 @@ public class pantallaDeBienvenida extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\ianre\\Web\\Trivia\\resources\\pregunta.png")); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 110, 110));
 
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\ianre\\Web\\Trivia\\resources\\bailando.gif")); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, 80, 90));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -141,6 +126,16 @@ public class pantallaDeBienvenida extends javax.swing.JFrame {
         
     }//GEN-LAST:event_botonComenzarActionPerformed
 
+    public void ReproducirSonido(String nombreSonido) throws IOException{
+       try {
+        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(nombreSonido).getAbsoluteFile());
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioInputStream);
+        clip.start();
+       } catch(UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+         System.out.println("Error al reproducir el sonido.");
+       }
+     }
     /**
      * @param args the command line arguments
      */
@@ -171,7 +166,11 @@ public class pantallaDeBienvenida extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new pantallaDeBienvenida().setVisible(true);
+                try {
+                    new pantallaDeBienvenida().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(pantallaDeBienvenida.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -179,6 +178,7 @@ public class pantallaDeBienvenida extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonComenzar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;

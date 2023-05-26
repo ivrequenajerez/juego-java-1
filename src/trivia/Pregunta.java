@@ -20,6 +20,7 @@ public class Pregunta {
     private ArrayList<String> respuestas2 = new ArrayList<>();
     private ArrayList<String> respuestas3 = new ArrayList<>();
     private ArrayList<String> respuestas4 = new ArrayList<>();
+    private ArrayList<String> respuestas5 = new ArrayList<>();
     
     
     // Constructores
@@ -79,7 +80,7 @@ public class Pregunta {
         // Pregunta 3
         preguntas.add(pregunta3);
         
-        respuestas4.add("Albacete");
+        respuestas4.add("Alhaurín de la Torre");
         respuestas4.add("Venta de Pantalones");
         respuestas4.add("Buenas Noches");
         respuestas4.add("Salares");
@@ -91,6 +92,21 @@ public class Pregunta {
         respuestas4.add("Eulz");
         respuestas4.add("Moveros");
         respuestas4.add("Pis");
+        // Pregunta 4
+        preguntas.add(pregunta4);
+        
+        respuestas5.add("Alhaurín de la Torre");
+        respuestas5.add("Venta de Pantalones");
+        respuestas5.add("Buenas Noches");
+        respuestas5.add("Salares");
+        respuestas5.add("Matagorda");
+        respuestas5.add("Guarromán");
+        respuestas5.add("Cenicero");
+        respuestas5.add("Correpoco");
+        respuestas5.add("Elciego");
+        respuestas5.add("Eulz");
+        respuestas5.add("Moveros");
+        respuestas5.add("Pis");
         // Pregunta 4
         preguntas.add(pregunta4);
     } 
