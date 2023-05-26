@@ -43,9 +43,9 @@ public class Pregunta {
         respuestas1.add("XCOM");
         respuestas1.add("FIFA");
         respuestas1.add("Minecraft");
-        respuestas1.add("Grand Theft Auto");
-        respuestas1.add("Super Mario Bros.");
-        respuestas1.add("The Sims");
+        respuestas1.add("Rita Barberá");
+        respuestas1.add("Choga");
+        respuestas1.add("Sudo Nautilus");
         respuestas1.add("Valorant");
         // Pregunta 1
         preguntas.add(pregunta1);

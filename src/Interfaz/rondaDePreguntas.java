@@ -63,6 +63,8 @@ public class rondaDePreguntas extends javax.swing.JFrame {
         ventanaFinJuego.setVisible(false);
         
         iniciarTemporizador();
+        
+        
     }
         
         
@@ -113,7 +115,7 @@ public class rondaDePreguntas extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        fondoResp.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 60));
+        fondoResp.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 130, 60));
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("OPCION");
@@ -141,7 +143,7 @@ public class rondaDePreguntas extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        fondoResp.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 130, 60));
+        fondoResp.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 130, 60));
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setText("OPCION");
@@ -155,7 +157,7 @@ public class rondaDePreguntas extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        fondoResp.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, 130, 60));
+        fondoResp.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, 130, 60));
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setText("OPCION");
@@ -169,7 +171,7 @@ public class rondaDePreguntas extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        fondoResp.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 130, 60));
+        fondoResp.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 130, 60));
 
         jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setText("OPCION");
@@ -197,7 +199,7 @@ public class rondaDePreguntas extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        fondoResp.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 130, 60));
+        fondoResp.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 130, 60));
 
         jButton8.setBackground(new java.awt.Color(255, 255, 255));
         jButton8.setText("OPCION");
@@ -211,7 +213,7 @@ public class rondaDePreguntas extends javax.swing.JFrame {
                 jButton8ActionPerformed(evt);
             }
         });
-        fondoResp.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 130, 60));
+        fondoResp.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 140, 130, 60));
 
         jButton9.setBackground(new java.awt.Color(255, 255, 255));
         jButton9.setText("OPCION");
@@ -225,7 +227,7 @@ public class rondaDePreguntas extends javax.swing.JFrame {
                 jButton9ActionPerformed(evt);
             }
         });
-        fondoResp.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 130, 60));
+        fondoResp.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 130, 60));
 
         jButton10.setBackground(new java.awt.Color(255, 255, 255));
         jButton10.setText("OPCION");
@@ -253,7 +255,7 @@ public class rondaDePreguntas extends javax.swing.JFrame {
                 jButton11ActionPerformed(evt);
             }
         });
-        fondoResp.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 130, 60));
+        fondoResp.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 130, 60));
 
         jButton12.setBackground(new java.awt.Color(255, 255, 255));
         jButton12.setText("OPCION");
@@ -267,7 +269,7 @@ public class rondaDePreguntas extends javax.swing.JFrame {
                 jButton12ActionPerformed(evt);
             }
         });
-        fondoResp.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, 130, 60));
+        fondoResp.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, 130, 60));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
@@ -329,7 +331,7 @@ public class rondaDePreguntas extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton13)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -360,7 +362,6 @@ public class rondaDePreguntas extends javax.swing.JFrame {
                 // Tu código de contador aquí
                 while (ventanaAbierta && tiempoRestante >= 0) {
                     tiempoRestante--;
-
                     if (tiempoRestante >= 0) {
                         jLabel2.setText(String.valueOf(tiempoRestante));
                     } else if (tiempoRestante <= 0){
