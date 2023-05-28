@@ -4,6 +4,9 @@
  */
 package Interfaz;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 /**
@@ -112,7 +115,12 @@ public class finDeJuego extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        pantallaDeBienvenida ventana = new pantallaDeBienvenida();
+        pantallaDeBienvenida ventana = null;
+        try {
+            ventana = new pantallaDeBienvenida();
+        } catch (IOException ex) {
+            Logger.getLogger(finDeJuego.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.setVisible(false);
         ventana.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed

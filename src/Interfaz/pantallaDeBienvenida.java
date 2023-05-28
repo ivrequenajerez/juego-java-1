@@ -56,7 +56,7 @@ public class pantallaDeBienvenida extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(600, 400));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(95, 158, 160));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         mensajeBienvenida.setBackground(new java.awt.Color(0, 0, 0));
@@ -111,7 +111,7 @@ public class pantallaDeBienvenida extends javax.swing.JFrame {
 
     private void botonComenzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonComenzarActionPerformed
         // Comenzar el juego (cambiar a pantalla rondaDePreguntas):
-    
+        JOptionPane.showMessageDialog(null, "Escoge las respuestas correctas. Si respondes bien, suma 1 punto, si respondes mal, resta 1 punto. Para ganar saca ");
         rondaDePreguntas ventana = new rondaDePreguntas();
         String[] opciones = {"Siempre", "No :("};
         ImageIcon icono = new ImageIcon("C:/Users/ianre/Web/Trivia/resources/hasbullaA.png");

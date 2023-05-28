@@ -100,7 +100,7 @@ public class rondaDePreguntas extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(600, 400));
 
-        fondoResp.setBackground(new java.awt.Color(255, 255, 255));
+        fondoResp.setBackground(new java.awt.Color(95, 158, 160));
         fondoResp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
@@ -273,8 +273,9 @@ public class rondaDePreguntas extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Oracle Virtual Quiz");
-        fondoResp.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 130, 20));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("SUDOTRIVIA");
+        fondoResp.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 130, 20));
 
         fondoPreg.setBackground(new java.awt.Color(18, 46, 73));
 
