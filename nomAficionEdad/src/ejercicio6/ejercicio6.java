@@ -21,7 +21,7 @@ public class ejercicio6 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
         /*
         
             Crear un programa con 3 opciones:
@@ -36,16 +36,15 @@ public class ejercicio6 {
             Para leer el archivo se recomienda usar BufferedReader(FileReader) 
             para leer línea a línea en lugar de FileReader que lo hace por carácter.
 
-        */
-        
+         */
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Menú de opciones:");
+            System.out.println("Menú de opciones");
             System.out.println("1. Crear un fichero de texto");
-            System.out.println("2. Mostrar contenido del fichero");
+            System.out.println("2. Mostrar contenido del fichero\n");
             System.out.println("3. Salir del Programa");
-            System.out.print("Elija una opción: ");
+            System.out.print("¡ELIJA UNA OPCIÓN: ");
 
             int opcion = scanner.nextInt();
 
@@ -57,12 +56,12 @@ public class ejercicio6 {
                     mostrarContenidoFichero();
                     break;
                 case 3:
-                    System.out.println("Saliendo del programa...");
+                    System.out.println("¡Hasta la próxima, amigo!");
                     scanner.close();
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Opción no válida. Por favor, elija una opción válida.");
+                    System.out.println("¡Opción no reconocida! ¡Elige una opción válida, por favor!");
                     break;
             }
         }
@@ -72,11 +71,11 @@ public class ejercicio6 {
         Scanner scanner = new Scanner(System.in);
 
         try {
-            System.out.println("Ingrese el nombre: ");
+            System.out.println("¡Dame tu nombre!");
             String nombre = scanner.nextLine();
-            System.out.println("Ingrese la afición: ");
+            System.out.println("¿Cuál es tu pasión en la vida?");
             String aficion = scanner.nextLine();
-            System.out.println("Ingrese la edad: ");
+            System.out.println("¿Y tu edad?");
             int edad = scanner.nextInt();
 
             BufferedWriter escritor = new BufferedWriter(new FileWriter("datos.txt", true));
@@ -84,9 +83,9 @@ public class ejercicio6 {
             escritor.newLine();
             escritor.close();
 
-            System.out.println("Los datos se han guardado en el fichero correctamente.");
+            System.out.println("Los datos han sido guardados exitosamente en el archivo");
         } catch (IOException ex) {
-            System.err.println("Error al crear el fichero: " + ex.getMessage());
+            System.err.println("¡Vaya! Ha ocurrido un problema al crear el fichero." + ex.getMessage());
         }
     }
 
@@ -101,9 +100,9 @@ public class ejercicio6 {
             }
             lector.close();
         } catch (IOException ex) {
-            System.err.println("Error al leer el fichero: " + ex.getMessage());
+            System.err.println("\n¡Error al leer el fichero!" + ex.getMessage());
         }
-        
+
     }
-    
+
 }

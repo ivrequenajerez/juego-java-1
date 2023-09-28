@@ -25,24 +25,23 @@ public class ejercicio8 {
             para leer sus valores y mostrarlos por pantalla.
         
          */
-        
-        // Creamos un array de bytes con los dígitos del 0 al 9
-        byte[] digitos = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        // Creamos una lista de números del 0 al 9
+        byte[] numeros = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
-        // Creamos un flujo de entrada ByteArrayInputStream utilizando el array de bytes
-        ByteArrayInputStream inputStream = new ByteArrayInputStream(digitos);
+        // Usamos una cosa llamada "ByteArrayInputStream" para leer estos números
+        ByteArrayInputStream entradaNumeros = new ByteArrayInputStream(numeros);
 
         try {
-            // Leemos los bytes del flujo de entrada y los mostramos por pantalla
-            int byteLeido;
-            while ((byteLeido = inputStream.read()) != -1) {
-                System.out.print(byteLeido + " ");
+            // Leemos los números uno por uno y los mostramos en pantalla
+            int numeroLeido;
+            while ((numeroLeido = entradaNumeros.read()) != -1) {
+                System.out.print(numeroLeido + " ");
             }
 
-            // Cerramos el flujo de entrada
-            inputStream.close();
+            // Cerramos la cosa que lee los números
+            entradaNumeros.close();
         } catch (IOException e) {
-            System.err.println("Error al leer el flujo de entrada: " + e.getMessage());
+            System.err.println("¡Algo salió mal al tratar de leer los números! " + e.getMessage());
         }
 
     }

@@ -29,29 +29,32 @@ public class ejercicio9 {
 
         Scanner scanner = new Scanner(System.in);
 
-        // Pedir un número al usuario
+        // Pedir a un amigo que ingrese un número
         System.out.print("Ingrese un número: ");
         int numero = scanner.nextInt();
 
         try {
-            // Crear el archivo numeros.dat con permisos de lectura y escritura
+            // Intentar crear un archivo llamado "numeros.dat" que podamos leer y escribir
             RandomAccessFile archivo = new RandomAccessFile("numeros.dat", "rw");
+            
+            // Cerrarlo inmediatamente
             archivo.close();
             System.out.println("Archivo numeros.dat creado con éxito.");
 
-            // Abrir el archivo en modo de escritura
+            // Intentar abrir el archivo nuevamente, pero esta vez para escribir
             archivo = new RandomAccessFile("numeros.dat", "rw");
 
             // Ir al final del archivo
             archivo.seek(archivo.length());
 
-            // Escribir el número en el archivo
+            // Escribe el número que nuestro amigo ingresó en el archivo
             archivo.writeInt(numero);
 
+            // Cierra el archivo
             archivo.close();
             System.out.println("Número agregado al archivo.");
 
-            // Llamar al método muestraFichero para mostrar el contenido
+            // Llama a un método llamado muestraFichero
             muestraFichero();
 
         } catch (IOException e) {

@@ -4,7 +4,9 @@
  */
 package ejercicio07;
 
+import java.io.BufferedReader;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -30,27 +32,33 @@ public class ejercicio07 {
         
          */
         try {
-            // Creamos un flujo de salida hacia el archivo "pares.txt"
+            // Creamos un archivo llamado "pares.txt" para escribir números pares
             OutputStream archivoPares = new FileOutputStream("pares.txt");
             Writer escritorPares = new OutputStreamWriter(archivoPares);
 
-            // Creamos un flujo de salida hacia el archivo "números"
+            // Creamos un archivo llamado "números.txt" para escribir números
             OutputStream archivoNumeros = new FileOutputStream("números.txt");
             Writer escritorNumeros = new OutputStreamWriter(archivoNumeros);
 
-            // Escribe los números pares en el archivo "pares.txt"
+            // Escribimos números pares en "pares.txt" del 2 al 200
             for (int i = 2; i <= 200; i += 2) {
                 escritorPares.write(Integer.toString(i) + "\n");
             }
 
-            // Escribe los primeros 100 números en el archivo "números"
-            for (int i = 1; i <= 100; i++) {
-                escritorNumeros.write(Integer.toString(i) + "\n");
-            }
-
-            // Cierra los flujos de escritura y los archivos
+            // Cerramos "pares.txt" después de escribir
             escritorPares.close();
             archivoPares.close();
+
+            // Abrimos "pares.txt" para leerlo
+            BufferedReader lectorPares = new BufferedReader(new FileReader("pares.txt"));
+
+            // Escribimos las primeras 100 líneas de "pares.txt" en "números.txt"
+            for (int i = 0; i < 100; i++) {
+                String linea = lectorPares.readLine();
+                escritorNumeros.write(linea + "\n");
+            }
+
+            // Cerramos "números.txt" después de escribir
             escritorNumeros.close();
             archivoNumeros.close();
 
