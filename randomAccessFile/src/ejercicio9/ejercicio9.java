@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package htRandomaccessfile;
+package ejercicio9;
 
 import java.io.RandomAccessFile;
 import java.io.IOException;
@@ -12,7 +12,7 @@ import java.util.Scanner;
  *
  * @author ianre
  */
-public class HTRandomAccessFile {
+public class ejercicio9 {
 
     /**
      * @param args the command line arguments

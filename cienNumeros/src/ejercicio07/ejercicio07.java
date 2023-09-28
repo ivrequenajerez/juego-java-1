@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package ciennumeros;
+package ejercicio07;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,7 +14,7 @@ import java.io.Writer;
  *
  * @author ianre
  */
-public class CienNumeros {
+public class ejercicio07 {
 
     /**
      * @param args the command line arguments

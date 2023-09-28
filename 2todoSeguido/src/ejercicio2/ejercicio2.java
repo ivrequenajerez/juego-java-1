@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package pkg2todoseguido;
+package ejercicio2;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,7 +16,7 @@ import java.util.Scanner;
  *
  * @author ianre
  */
-public class Main {
+public class ejercicio2 {
 
     /**
      * @param args the command line arguments
