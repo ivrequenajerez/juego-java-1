@@ -35,7 +35,7 @@ public class ejercicio07 {
             Writer escritorPares = new OutputStreamWriter(archivoPares);
 
             // Creamos un flujo de salida hacia el archivo "números"
-            OutputStream archivoNumeros = new FileOutputStream("números");
+            OutputStream archivoNumeros = new FileOutputStream("números.txt");
             Writer escritorNumeros = new OutputStreamWriter(archivoNumeros);
 
             // Escribe los números pares en el archivo "pares.txt"
