@@ -34,6 +34,7 @@ public class Ejercicio11 {
         // y luego escribimos en el archivo invocando el método, para luego mostrar el contenido de este archivo
         
         // Ejemplo de uso
+        
         String[] nombres = {"Juan", "Maria", "Pedro", "Ana", "Carlos"};
         double[] alturas = {175.5, 162.0, 180.2, 165.8, 175.0};
         String nombreArchivo = "nombres_y_alturas.txt";
